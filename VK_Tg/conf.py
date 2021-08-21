@@ -1,2 +1,3 @@
 TOKEN_VK = '42eff277fcacaf662efe5210e1c62716eecc7042476bff8ba48c373fb3a030c6152a24a96967ae000d319'
-TOKEN_TG = ''
+TOKEN_TG = '1941751916:AAF6kpGjJUsoO3BCrNn226NJWrOhTjZEDSw'
+KEYS = 'django-insecure-k(ltp8_2_9+698l273&9j&*0$d*2aefsc%paee%-o8=%u30&i5'

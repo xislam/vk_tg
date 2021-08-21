@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from VK_Tg.conf import KEYS
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k(ltp8_2_9+698l273&9j&*0$d*2aefsc%paee%-o8=%u30&i5'
+SECRET_KEY = KEYS
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

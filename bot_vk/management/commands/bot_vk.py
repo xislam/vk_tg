@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from django.db.migrations import executor
+from aiogram.utils import executor
 
 
 class Command(BaseCommand):
