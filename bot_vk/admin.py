@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from bot_vk.models import VKmsg
+
+admin.site.register(VKmsg)
