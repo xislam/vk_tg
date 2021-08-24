@@ -1,3 +1,4 @@
+telebot
 asgiref==3.4.1
 certifi==2021.5.30
 charset-normalizer==2.0.4
