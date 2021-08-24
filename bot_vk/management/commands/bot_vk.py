@@ -1,6 +1,7 @@
 import telebot
 import vk_api
 from django.core.management import BaseCommand
+from django.core.servers.basehttp import run
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from VK_Tg.conf import TOKEN_VK
@@ -35,4 +36,5 @@ bot.polling()
 
 
 class Command(BaseCommand):
+
     pass
