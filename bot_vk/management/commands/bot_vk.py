@@ -20,19 +20,16 @@ def sender_vk(id, text):
 for event in longpoll.listen():
 
     if event.type == VkEventType.MESSAGE_NEW:
-        print(event.attachments)
+
+        if event.attachments.get('attach1_type'):
+            attachment = event.attachments.get('attach1_type')
+            bot.send_message(-1001516737166, attachment)
 
         if event.text:
             msg = event.text.lower()
             id = event.user_id
-            if msg:
-                VKmsg(msg=msg).save()
-                bot.send_message(-1001516737166, msg)
-
-            if event.attachments:
-
-                bot.send_message(-1001516737166, event.attachments)
-
+            VKmsg(msg=msg).save()
+            bot.send_message(-1001516737166, msg)
 
 bot.polling()
 
