@@ -1,13 +1,12 @@
+import telebot
 import vk_api
-from aiogram import Dispatcher, Bot, types
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.utils import executor
 from django.core.management import BaseCommand
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from VK_Tg.conf import TOKEN_VK
-from bot_tg.management.commands.bot_tg import process_start_command, tg
 from bot_vk.models import VKmsg
+
+bot = telebot.TeleBot('1996894815:AAEGksMKvnrxQ33Is49yZ8ZgouH1vWsryUU')
 
 vk_session = vk_api.VkApi(token=TOKEN_VK)
 session_api = vk_session.get_api()
@@ -19,14 +18,23 @@ def sender_vk(id, text):
 
 
 for event in longpoll.listen():
+
     if event.type == VkEventType.MESSAGE_NEW:
+        print(event.attachments)
+
         if event.text:
             msg = event.text.lower()
             id = event.user_id
             if msg:
-                vk_m = msg
                 VKmsg(msg=msg).save()
+                bot.send_message(-1001516737166, msg)
 
+            if event.attachments:
+
+                bot.send_message(-1001516737166, event.attachments)
+
+
+bot.polling()
 
 
 class Command(BaseCommand):
