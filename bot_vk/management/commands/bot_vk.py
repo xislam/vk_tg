@@ -14,7 +14,8 @@ longpoll = VkLongPoll(vk_session)
 
 
 def vk_user_id(id, text):
-    vk_session.method('messages.send', {'user_id': id, 'message': text, 'random_id': 0})
+    vk_session.method('messages.send',
+                      {'user_id': id, 'message': text, 'random_id': 0})
 
 
 for event in longpoll.listen():
