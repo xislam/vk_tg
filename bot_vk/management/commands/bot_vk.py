@@ -15,22 +15,23 @@ longpoll = VkLongPoll(vk_session)
 
 
 def sender_vk(id, text):
-    vk_session.method('messages.send', {'user_id': id, 'message': text, 'random_id': 0})
+    vk_session.method('messages.send', {'chat_id': id, 'message': text, 'random_id': 0})
 
 
 for event in longpoll.listen():
 
     if event.type == VkEventType.MESSAGE_NEW:
-
+        id = event.user_id
+        print(id)
         if event.attachments.get('attach1_type'):
             attachment = event.attachments.get('attach1_type')
             bot.send_message(-1001516737166, attachment)
 
-        if event.text:
-            msg = event.text.lower()
-            id = event.user_id
-            VKmsg(msg=msg).save()
-            bot.send_message(-1001516737166, msg)
+        if event.user_id:
+            if event.text:
+                msg = event.text.lower()
+                VKmsg(msg=msg).save()
+                bot.send_message(-1001516737166, msg)
 
 bot.polling()
 
