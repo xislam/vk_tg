@@ -33,7 +33,7 @@ services:
   bot:
     build: .
     image: app
-    command: bash -c "python manage.py bot_tg && python manage.py bot_vk"
+    command: bash -c "python manage.py bot_tg | python manage.py bot_vk"
     volumes:
     - .:/code
     links:

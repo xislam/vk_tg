@@ -1,3 +1,5 @@
 TOKEN_VK = '8e85707029482735eeb8195d2b1969e5b4b47bc9636ded3ec6f278d5faf69d5141103462cdf933b423101'
 TOKEN_TG = '1941751916:AAF6kpGjJUsoO3BCrNn226NJWrOhTjZEDSw'
 KEYS = 'django-insecure-k(ltp8_2_9+698l273&9j&*0$d*2aefsc%paee%-o8=%u30&i5'
+user_id_vk = 670616148
+chat_id_tg = -1001516737166
