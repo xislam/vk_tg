@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=postgres
   web:
     build: .
-    command:  bash -c "python manage.py bot_tg && python manage.py bot_vk && python manage.py runserver 0.0.0.0:8001"
+    command: python manage.py runserver 0.0.0.0:8001
     volumes:
       - .:/code
     ports:
@@ -30,3 +30,13 @@ services:
       - db
     depends_on:
       - db
+  bot:
+    build: .
+    image: app
+    command: bash -c "python manage.py bot_tg && python manage.py bot_vk"
+    volumes:
+    - .:/code
+    links:
+    - db
+    depends_on:
+    - db

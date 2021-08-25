@@ -11,3 +11,4 @@ uploads
 settings_local.py
 conf.py
 settings.ini
+data

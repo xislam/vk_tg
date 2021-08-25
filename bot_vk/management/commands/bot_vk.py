@@ -32,6 +32,7 @@ for event in longpoll.listen():
                 VKmsg(msg=msg).save()
                 for msgs in list(VKmsg.objects.all().filter(sent='False')):
                     bot.send_message(-1001516737166, msgs)
+                    msgs.update(sent=True)
 
 bot.polling()
 
