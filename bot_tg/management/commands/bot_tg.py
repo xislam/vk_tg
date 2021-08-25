@@ -14,13 +14,6 @@ longpoll = VkLongPoll(vk_session)
 
 
 # vk_session.method('messages.send', {'user_id': id, 'message': text, 'random_id': 0})
-@bot.message_handler(content_types=['photo'])
-def photo(message):
-    if message.photo:
-        print("gjhghj")
-
-
-
 
 @bot.message_handler(commands=['replay'])
 def start_command(message):
@@ -31,7 +24,8 @@ def start_command(message):
 
 @bot.message_handler(commands=['start'])
 def start_command(message):
-    bot.send_message(message.chat.id, "Hello!")
+    id = message.chat.id
+    bot.send_message(message.chat.id, f"Привет это ID чата: {id}")
 
 
 @bot.message_handler()

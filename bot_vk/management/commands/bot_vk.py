@@ -12,6 +12,11 @@ vk_session = vk_api.VkApi(token=TOKEN_VK)
 session_api = vk_session.get_api()
 longpoll = VkLongPoll(vk_session)
 
+
+def vk_user_id(id, text):
+    vk_session.method('messages.send', {'user_id': id, 'message': text, 'random_id': 0})
+
+
 for event in longpoll.listen():
 
     if event.type == VkEventType.MESSAGE_NEW:
@@ -19,13 +24,16 @@ for event in longpoll.listen():
             attachment = event.attachments.get('attach1_type')
             bot.send_message(chat_id_tg, attachment)
 
-        if event.user_id != '670616148':
-            if event.text:
-                msg = event.text.lower()
-                VKmsg(msg=msg).save()
-                for msgs in VKmsg.objects.all().filter(sent='False'):
-                    bot.send_message(chat_id_tg, msgs)
-                    VKmsg.objects.all().filter(sent='False').update(sent=True)
+        if event.text == 'VK':
+            id = event.user_id
+            vk_user_id(id, text=f"Привет это ID чата: {id}")
+
+        if event.text:
+            msg = event.text.lower()
+            VKmsg(msg=msg).save()
+            for msgs in VKmsg.objects.all().filter(sent='False'):
+                bot.send_message(chat_id_tg, msgs)
+                VKmsg.objects.all().filter(sent='False').update(sent=True)
 
 bot.polling()
 
