@@ -1,7 +1,6 @@
 import telebot
 import vk_api
 from django.core.management import BaseCommand
-from django.core.servers.basehttp import run
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from VK_Tg.conf import TOKEN_VK
@@ -27,15 +26,15 @@ for event in longpoll.listen():
             attachment = event.attachments.get('attach1_type')
             bot.send_message(-1001516737166, attachment)
 
-        if event.user_id:
+        if event.user_id != '670616148':
             if event.text:
                 msg = event.text.lower()
                 VKmsg(msg=msg).save()
-                bot.send_message(-1001516737166, msg)
+                for msgs in list(VKmsg.objects.all().filter(sent='False')):
+                    bot.send_message(-1001516737166, msgs)
 
 bot.polling()
 
 
 class Command(BaseCommand):
-
     pass

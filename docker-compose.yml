@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command:  bash -c "python manage.py bot_tg && python manage.py bot_vk && python manage.py runserver 0.0.0.0:8001"
+    volumes:
+      - .:/code
+    ports:
+      - "8001:8001"
+    links:
+      - db
+    depends_on:
+    - migration
+  migration:
+    build: .
+    image: app
+    command: python manage.py migrate
+    volumes:
+      - .:/code
+    links:
+      - db
+    depends_on:
+      - db
