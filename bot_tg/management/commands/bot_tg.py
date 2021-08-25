@@ -3,10 +3,10 @@ import vk_api
 from django.core.management import BaseCommand
 from vk_api.longpoll import VkLongPoll
 
-from VK_Tg.conf import TOKEN_VK, user_id_vk
+from VK_Tg.conf import TOKEN_VK, user_id_vk, TOKEN_TG
 from bot_tg.models import TgMsg
 
-bot = telebot.TeleBot('1996894815:AAEGksMKvnrxQ33Is49yZ8ZgouH1vWsryUU')
+bot = telebot.TeleBot(TOKEN_TG)
 
 vk_session = vk_api.VkApi(token=TOKEN_VK)
 session_api = vk_session.get_api()

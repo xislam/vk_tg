@@ -3,10 +3,10 @@ import vk_api
 from django.core.management import BaseCommand
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-from VK_Tg.conf import TOKEN_VK, chat_id_tg
+from VK_Tg.conf import TOKEN_VK, chat_id_tg, TOKEN_TG
 from bot_vk.models import VKmsg
 
-bot = telebot.TeleBot('1996894815:AAEGksMKvnrxQ33Is49yZ8ZgouH1vWsryUU')
+bot = telebot.TeleBot(TOKEN_TG)
 
 vk_session = vk_api.VkApi(token=TOKEN_VK)
 session_api = vk_session.get_api()
@@ -26,7 +26,7 @@ for event in longpoll.listen():
 
         if event.text == 'VK':
             id = event.user_id
-            vk_user_id(id, text=f"Привет это ID чата: {id}")
+            vk_user_id(id, text=f"Привет это ID чата vk: {id}")
 
         if event.text:
             msg = event.text.lower()
